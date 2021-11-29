@@ -1,36 +1,21 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import { CircularProgress, Typography } from '@mui/material'
 
-import CollectionComponentsOfForm from './form/CollectionComponentsOfForm'
-import { reselect } from '../selectors'
+import CollectionFormsComponents from './form/CollectionFormsComponents'
 import { useStyles } from '../theme/style'
+import useConverter from '../hooks/useConverter'
 
 function CurrenciesConverter () {
   const classes = useStyles()
 
-  const [
+  const {
     defaultForms,
     allСurrencies,
     isLoading,
-    selectedCurrenciesOfUser,
-    enteredValueOfUser,
-    rates,
     error,
-  ] = useSelector(reselect)
-
-  function converter (valueOfDefaultForm) {
-    const activeInput = enteredValueOfUser.nameOfActiveInput
-    const selectedCurrency = rates[selectedCurrenciesOfUser[activeInput]?.value]
-    const ratesOfActiveForm = selectedCurrency || rates[enteredValueOfUser.nameOfActiveInput]
-    const ratesOfOtherForm = rates[selectedCurrenciesOfUser[valueOfDefaultForm]?.value ||
-     valueOfDefaultForm]
-
-    const resultOfConverter = activeInput === valueOfDefaultForm
-      ? enteredValueOfUser.value
-      : (enteredValueOfUser.value / ratesOfActiveForm * ratesOfOtherForm).toFixed(2)
-    return (+resultOfConverter || enteredValueOfUser.value)
-  }
+    converter,
+    selectedUsersCurrencie,
+  } = useConverter()
 
   return (
   <>
@@ -38,27 +23,25 @@ function CurrenciesConverter () {
           Currency Converter
     </Typography>
         { error ||
-          (<div className={classes.root}>
+          <div className={classes.root}>
             {isLoading
-              ? (<CircularProgress />)
-              : (<>
-                    {defaultForms.map(valueOfDefaultForm => {
-                      return (
-                        <CollectionComponentsOfForm
-                        allСurrencies={allСurrencies}
-                        key={valueOfDefaultForm}
-                        name={valueOfDefaultForm}
-                        selectedCurrency={ selectedCurrenciesOfUser[valueOfDefaultForm]?.value ||
-                            valueOfDefaultForm }
-                        value={converter(valueOfDefaultForm)}/>
-                      )
-                    })
-                  }
-                 </>
-                )
+              ? <CircularProgress />
+              : <>
+                  {defaultForms.map(formsValue => {
+                    return (
+                      <CollectionFormsComponents
+                      allСurrencies={allСurrencies}
+                      key={formsValue}
+                      name={formsValue}
+                      selectedCurrency={ selectedUsersCurrencie[formsValue]?.value ||
+                        formsValue }
+                      value={converter(formsValue)}/>
+                    )
+                  })
+                }
+                </>
               }
-           </div>
-          )
+          </div>
         }
   </>
   )

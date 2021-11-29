@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import { useStyles } from '@theme/style'
 
-const Currencies = ({ allСurrencies, ...props }, ref) => {
+const Currencies = ({ allСurrencies, ...props }) => {
   const classes = useStyles()
   return (
     <FormControl variant="standard">

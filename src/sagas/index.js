@@ -1,11 +1,11 @@
 import { call } from 'redux-saga/effects'
 
-import requestGeoData from './requestGeoData'
+import requestUsersGeoData from './requestUsersGeoData'
 import requestСonversionsCurrencies from './requestСonversionsCurrencies'
 
 function * requestsAll () {
-  const nationalСurrencyOfUser = yield call(requestGeoData)
-  yield call(requestСonversionsCurrencies, nationalСurrencyOfUser)
+  const nationalUsersСurrency = yield call(requestUsersGeoData)
+  yield call(requestСonversionsCurrencies, nationalUsersСurrency)
 }
 
 export default function * rootWatcher () {

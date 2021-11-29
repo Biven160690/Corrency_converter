@@ -10,10 +10,10 @@ const theme = createTheme({
        paper: '#f7f7f7',
      },
   },
-  borderColorOfForms: {
+  formsColorBorder: {
     border: '1px solid #ced4da',
   },
-  positionOfForms: {
+  formsPosition: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: ['flex-end', 'center'],

@@ -5,9 +5,9 @@ import PropTypes from 'prop-types'
 
 import Currencies from './Currencies'
 import { useStyles } from '@theme/style'
-import { enteredDataOfUser, selectedCurrenciesOfUser } from '../../actions'
+import { getEnteredUsersData, getSelectedUsersCurrencie } from '../../actions'
 
-const CollectionComponentsOfForm = ({
+const CollectionFormsComponents = ({
   allСurrencies,
   name,
   selectedCurrency,
@@ -16,19 +16,19 @@ const CollectionComponentsOfForm = ({
   const dispatch = useDispatch()
   const classes = useStyles()
 
-  const handleChangeEnterData = useCallback(e => {
-    dispatch(enteredDataOfUser(
-      { value: e.target.value, nameOfActiveInput: e.target.name },
+  const handleChangeEnterData = e => {
+    dispatch(getEnteredUsersData(
+      { value: e.target.value, activeInputsName: e.target.name },
     ))
-  }, [value])
+  }
 
   const handleChangeSelectedCurrencies = useCallback(e => {
-    dispatch(selectedCurrenciesOfUser({ [e.target.name]: { value: e.target.value } },
+    dispatch(getSelectedUsersCurrencie({ [e.target.name]: { value: e.target.value } },
     ))
   }, [selectedCurrency])
 
   return (
-   <form className={classes.componentsOfForm}>
+   <form className={classes.formsComponent}>
       <div>
         <div>
           <Currencies
@@ -51,9 +51,9 @@ const CollectionComponentsOfForm = ({
   )
 }
 
-export default CollectionComponentsOfForm
+export default CollectionFormsComponents
 
-CollectionComponentsOfForm.propTypes = {
+CollectionFormsComponents.propTypes = {
   allСurrencies: PropTypes.arrayOf(PropTypes.string).isRequired,
   name: PropTypes.string.isRequired,
   selectedCurrency: PropTypes.string.isRequired,

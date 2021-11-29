@@ -2,24 +2,24 @@ import { makeStyles } from '@mui/styles'
 
 export const useStyles = makeStyles(theme => ({
   root: {
-    display: theme.positionOfForms.display,
-    justifyContent: theme.positionOfForms.justifyContent,
+    display: theme.formsPosition.display,
+    justifyContent: theme.formsPosition.justifyContent,
     marginTop: theme.spacing(4),
     [theme.breakpoints.down('md')]: {
-      flexDirection: theme.positionOfForms.flexDirection,
-      alignItems: theme.positionOfForms.alignItems[1],
+      flexDirection: theme.formsPosition.flexDirection,
+      alignItems: theme.formsPosition.alignItems[1],
       margin: theme.spacing(3),
     },
   },
-  componentsOfForm: {
+  formsComponent: {
     margin: theme.spacing(1),
     background: theme.palette.background.paper,
-    border: theme.borderColorOfForms.border,
+    border: theme.formsColorBorder.border,
     borderRadius: theme.spacing(0.5),
     '& div': {
-      display: theme.positionOfForms.display,
-      justifyContent: theme.positionOfForms.justifyContent,
-      alignItems: theme.positionOfForms.alignItems[0],
+      display: theme.formsPosition.display,
+      justifyContent: theme.formsPosition.justifyContent,
+      alignItems: theme.formsPosition.alignItems[0],
       padding: 2,
     },
   },
@@ -32,11 +32,11 @@ export const useStyles = makeStyles(theme => ({
     },
     '& .MuiInputBase-input': {
       borderRadius: theme.spacing(1),
-      position: theme.positionOfForms.position,
+      position: theme.formsPosition.position,
       backgroundColor: theme.palette.background.paper,
-      border: theme.borderColorOfForms.border,
+      border: theme.formsColorBorder.border,
       fontSize: theme.spacing(2),
-      padding: theme.positionOfForms.padding,
+      padding: theme.formsPosition.padding,
       transition: theme.transitions.create(['border-color', 'box-shadow']),
       '&:focus': {
         borderRadius: theme.spacing(0.5),

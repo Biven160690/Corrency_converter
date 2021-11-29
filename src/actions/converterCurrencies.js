@@ -1,29 +1,29 @@
-import { GET_ENTERED_DATA_OF_USER, GET_SELECTED_CURRENCIES_OF_USER, GET_ERROR_OF_REQUEST, REQUEST_CONVERSIONS_FOR_CONVERTER } from '../constants'
+import { GET_CONVERSIONS_CORRENCIES, GET_ENTERED_USERS_DATA, GET_SELECTED_USERS_CURRENCIE, GET_REQUEST_ERROR } from '../constants'
 
-export const conversionsCurrenciesForConverter = data => {
+export const getConversionsCurrencies = data => {
   return {
+    type: GET_CONVERSIONS_CORRENCIES,
     payload: data,
-    type: REQUEST_CONVERSIONS_FOR_CONVERTER,
   }
 }
 
-export const enteredDataOfUser = data => {
+export const getEnteredUsersData = data => {
   return {
+    type: GET_ENTERED_USERS_DATA,
     payload: data,
-    type: GET_ENTERED_DATA_OF_USER,
   }
 }
 
-export const selectedCurrenciesOfUser = data => {
+export const getSelectedUsersCurrencie = data => {
   return {
+    type: GET_SELECTED_USERS_CURRENCIE,
     payload: data,
-    type: GET_SELECTED_CURRENCIES_OF_USER,
   }
 }
 
-export const errorOfRequest = data => {
+export const getRequestError = data => {
   return {
+    type: GET_REQUEST_ERROR,
     payload: data,
-    type: GET_ERROR_OF_REQUEST,
   }
 }

@@ -1,13 +1,13 @@
 import { call, put } from 'redux-saga/effects'
 
-import { conversionsCurrenciesForConverter, errorOfRequest } from '../actions'
+import { getConversionsCurrencies, getRequestError } from '../actions'
 import makeApiRequest from './makeApiRequest'
 
-export default function * requestСonversionsCurrencies (nationalСurrencyOfUser) {
+export default function * requestСonversionsCurrencies (nationalUsersСurrency) {
   try {
     const url = `${process.env.REACT_APP_API_CONVERSION_CURRENCIES}?api_key=${
       process.env.REACT_APP_SECRET_KEY}&base=${
-        nationalСurrencyOfUser}&symbols=EUR,RUB,USD,${nationalСurrencyOfUser}`
+        nationalUsersСurrency}&symbols=EUR,RUB,USD,${nationalUsersСurrency}`
 
     const response = yield call(makeApiRequest, url)
     const conversionCurrencies = response.data.response
@@ -19,12 +19,12 @@ export default function * requestСonversionsCurrencies (nationalСurrencyOfUser
       defaultForms = [base, 'USD'],
     } = conversionCurrencies
 
-    yield put(conversionsCurrenciesForConverter({
+    yield put(getConversionsCurrencies({
       rates,
       allСurrencies,
       defaultForms,
     }))
   } catch (error) {
-    yield put(errorOfRequest(error.message))
+    yield put(getRequestError(error.message))
   }
 }
